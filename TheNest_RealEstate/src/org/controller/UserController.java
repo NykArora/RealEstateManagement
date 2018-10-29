@@ -36,6 +36,9 @@ public class UserController {
 	@Autowired
 	IHPIrestInt iHpiService;
 	 
+	
+	org.json.simple.JSONObject delhijsons = null;
+	
      @RequestMapping("login")
 		public String login(@ModelAttribute User user,Model model,HttpServletRequest request)
 		{ 
@@ -68,47 +71,13 @@ public class UserController {
 			 if(user.getUserRole().getUserRoleId()==1)
 			 {
 				 
-				String responsejson = iHpiService.getHPIJsonDelhi();
-				 
-				System.out.println("responsejson"+responsejson);
+				 delhijsons = iHpiService.getHPIJsonDelhi();
+
+				 //{"_09_2011":"124.8","_09_2013":"215.7","_09_2012":"183.2","_12_2011":"136.7","_03_2012":"158.2","_06_2013":"214.8","_03_2013":"213.1","_06_2011":"126.8","particulars":"Delhi","_06_2012":"177.3","_12_2012":"200.7"}
+				System.out.println("delhijsons cons"+delhijsons.toString());
 				
-				JSONParser parser = new JSONParser(); 
+			//	model.addAttribute("hpidelhi",responsejson);
 				
-				try {
-					
-					org.json.simple.JSONObject json = (org.json.simple.JSONObject) parser.parse(responsejson);
-					
-					String title =	(String) json.get("title");
-					
-					org.json.simple.JSONArray jarr =	(org.json.simple.JSONArray) json.get("records");
-				
-					System.out.println("title---"+title);
-					
-					System.out.println("len---"+jarr.size());
-					
-					for (int i = 0; i < jarr.size(); i++) {
-						
-						org.json.simple.JSONObject jsons = (org.json.simple.JSONObject) jarr.get(i);
-			        
-						String jas = jarr.get(i).toString();
-						
-						System.out.println("jas new"+jas);
-						
-						System.out.println(jsons.get("particulars"));
-						
-						if(jsons.get("particulars").equals("Delhi")) {
-							
-							System.out.println("delhi index "+jsons.toString());
-						}
-			           // System.out.println(post_id);
-			       
-					}
-					
-					} 
-					catch (ParseException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
 					return "redirect:dashboard";
 			 }
 			 

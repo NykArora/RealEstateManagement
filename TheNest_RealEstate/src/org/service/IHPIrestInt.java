@@ -1,6 +1,9 @@
 package org.service;
 
+import org.json.simple.JSONObject;
+
 public interface IHPIrestInt {
 
-	public String getHPIJsonDelhi();
+	public org.json.simple.JSONObject getHPIJsonDelhi();
 }
+

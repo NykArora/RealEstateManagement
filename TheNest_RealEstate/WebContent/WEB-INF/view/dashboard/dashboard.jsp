@@ -9,7 +9,7 @@
                 <div class="x_panel">
                   <div class="x_title">
                     <h2 class="page_title">Client List<small></small></h2>
-                   
+                
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
@@ -67,7 +67,7 @@
 					</div>
                   </div>
                 </div>
-</div>
+			</div>
 
              
             </div>
