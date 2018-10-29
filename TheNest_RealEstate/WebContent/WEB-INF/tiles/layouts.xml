@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <!DOCTYPE tiles-definitions PUBLIC  
+        "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"  
+        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+        <tiles-definitions>
+      
+        
+        
+        
+        <!--   login  -->
+      <!--   
+        <definition name="base.definitionlogin"
+		template="/WEB-INF/view/template/loginlayout.jsp">
+		
+		<put-attribute name="bodylogin" value="" />
+	
+		</definition>
+		
+		<definition name="login" extends="base.definitionlogin">
+		
+		<put-attribute name="loginbody" value="/WEB-INF/view/user/login.jsp" />
+		</definition> -->
+	
+	 <definition name="base.definitionlogin"
+		template="/WEB-INF/view/template/loginlayout.jsp">
+		
+		<put-attribute name="loginbody" value="" />
+	
+		</definition>
+		
+			<definition name="login" extends="base.definitionlogin">
+		
+		<put-attribute name="loginbody" value="/WEB-INF/view/user/login.jsp" />
+		</definition>
+	
+	
+
+	
+	
+	
+	<definition name="forgetpassword" extends="base.definitionlogin">
+		
+		<put-attribute name="loginbody" value="/WEB-INF/view/user/forgetpassword.jsp" />
+		</definition>
+		
+	
+	
+	<!-- dashboard   -->
+		<definition name="base.definitiondashboard" template="/WEB-INF/view/template/admindashboardlayout.jsp">
+				<put-attribute name="left"  value="/WEB-INF/view/template/left.jsp" ></put-attribute>
+		<put-attribute name="header"  value="/WEB-INF/view/template/header.jsp" ></put-attribute>
+
+		<put-attribute name="body"  value="" ></put-attribute>
+		<put-attribute name="footer"  value="/WEB-INF/view/template/footer.jsp" ></put-attribute>
+		</definition>
+		
+		<definition name="userenrollment" extends="base.definitiondashboard">
+		
+		<put-attribute name="body" value="/WEB-INF/view/user/userenrollment.jsp" />
+		</definition>
+		
+		
+		<!--  edit user layout -->
+		<definition name="edit" extends="base.definitiondashboard">
+		
+		<put-attribute name="body" value="/WEB-INF/view/user/edit.jsp" />
+		</definition>
+       
+       	
+		<!--  edit user layout -->
+		<definition name="editclient" extends="base.definitiondashboard">
+		
+		<put-attribute name="body" value="/WEB-INF/view/client/editclient.jsp" />
+		</definition>
+       
+		
+		<definition name="dashboard" extends="base.definitiondashboard">
+		<put-attribute name="body" value="/WEB-INF/view/dashboard/dashboard.jsp" />
+	</definition>
+	<!--  reassign patent -->
+	<definition name="reassign" extends="base.definitiondashboard">
+		<put-attribute name="body" value="/WEB-INF/view/dashboard/reassign.jsp" />
+	</definition>
+	
+	<!-- patient list -->
+	<definition name="clientlist" extends="base.definitiondashboard">
+		<put-attribute name="body" value="/WEB-INF/view/client/clientlist.jsp" />
+	</definition>
+	
+	<!-- user list layout -->
+		<definition name="userlist" extends="base.definitiondashboard">
+		<put-attribute name="body" value="/WEB-INF/view/user/userlist.jsp" />
+	</definition>
+		
+		
+		  <definition name="client" extends="base.definitiondashboard">
+		
+		<put-attribute name="body" value="/WEB-INF/view/client/client.jsp" />
+		</definition>
+		
+		
+		 <definition name="askforconsent" extends="base.definitiondashboard">
+		
+		<put-attribute name="body" value="/WEB-INF/view/client/askforconsent.jsp" />
+		</definition>
+		
+		
+		  <definition name="askforpatientconsent" extends="base.definitiondashboard">
+		
+		<put-attribute name="body" value="/WEB-INF/view/patient/askforpatientconsent.jsp" />
+		</definition>
+		
+			<definition name="login" extends="base.definitionlogin">
+		
+		<put-attribute name="loginbody" value="/WEB-INF/view/user/login.jsp" />
+		</definition>
+		
+	
+		
+		 <definition name="base.definitionblank"
+		template="/WEB-INF/view/template/blanklayout.jsp">
+		
+		<put-attribute name="bodyblank" value="" />
+	
+		</definition>
+		 <definition name="test" extends="base.definitionblank">
+		
+		<put-attribute name="bodyblank" value="/WEB-INF/view/user/test.jsp" />
+		</definition>
+	
+		<!-- open create patient -->
+		<definition name="createclient" extends="base.definitiondashboard">
+		
+		<put-attribute name="body" value="/WEB-INF/view/client/createclient.jsp" />
+		</definition>
+		
+		
+		<definition name="addproperty" extends="base.definitiondashboard">
+		
+		<put-attribute name="body" value="/WEB-INF/view/property/addproperty.jsp" />
+		</definition>
+		
+        </tiles-definitions>

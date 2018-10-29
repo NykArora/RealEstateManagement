@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:p="http://www.springframework.org/schema/p"
+    xmlns:mvc="http://www.springframework.org/schema/mvc"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:tx="http://www.springframework.org/schema/tx"
+    xmlns:sec="http://www.springframework.org/schema/security"
+    
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd     
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/tx
+		http://www.springframework.org/schema/tx/spring-tx.xsd
+		http://www.springframework.org/schema/security
+		http://www.springframework.org/schema/security/spring-security-3.2.xsd">
+        
+
+    <context:annotation-config />
+    
+<context:component-scan base-package="org.controller"/>
+<context:component-scan base-package="org.service"/>
+<context:component-scan base-package="org.dao"/>
+<context:component-scan base-package="org.validator"/>
+
+ <bean id="messageSource" 
+            class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+        <property name="basename" value="/WEB-INF/resources/messages" />
+    </bean>
+	
+     
+   <!--   
+    <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/jsp/"/>
+        <property name="suffix" value=".jsp"/>
+    </bean> -->
+    
+    <bean id="viewResolver" class="org.springframework.web.servlet.view.tiles3.TilesViewResolver"/>
+<bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
+<property name="definitions">
+<list>
+<value>/WEB-INF/tiles/layouts.xml</value>
+<!-- <value>/WEB-INF/layouts/views.xml</value> -->
+</list>
+</property>
+</bean>
+
+     <mvc:resources location="resources/ccmtheme/" mapping="resources/**"></mvc:resources>
+    <mvc:annotation-driven></mvc:annotation-driven>
+    
+	<mvc:default-servlet-handler />
+    
+   
+   <!--    <bean id="dataSource"
+          class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+        <property name="driverClass" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>
+        <property name="jdbcUrl" value="jdbc:sqlserver://praveensql.database.windows.net:1433;database=ccmcare;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;"/>
+        <property name="user" value="praveenadmin@praveensql"/>
+        <property name="password" value="test@123"/>
+
+   
+   
+        <property name="acquireIncrement" value="2"/>
+        <property name="minPoolSize" value="20"/>
+        <property name="maxPoolSize" value="50"/>
+        <property name="maxIdleTime" value="600"/>
+    </bean> -->
+  
+  
+  
+  
+ 
+  <bean id="dataSource"
+          class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+        <property name="driverClass" value="com.mysql.jdbc.Driver"/>
+        <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/test"/>
+        <property name="user" value="root"/>
+        <property name="password" value=""/>
+		<property name="acquireIncrement" value="2"/>
+        <property name="minPoolSize" value="20"/>
+        <property name="maxPoolSize" value="50"/>
+        <property name="maxIdleTime" value="600"/>
+    </bean>
+
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+        <property name="dataSource">
+            <ref bean="dataSource"/>
+        </property>
+        
+        
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+              
+                <prop key="hibernate.hbm2ddl.auto">update</prop>
+                  <prop key="hibernate.show_sql">true</prop>
+                
+            </props>
+        </property>
+
+    
+        <property name="packagesToScan" value="org.dto"/>
+    </bean>
+
+    <bean id="hibernateSessionFactory" class="org.util.HibernateSessionFactoryImpl">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+
+    <bean id="transactionManager"
+          class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+    <tx:annotation-driven/>
+     <context:annotation-config />
+ <!--    <import resource="classpath:hibernate-config.xml" />
+     -->
+     
+    <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+    <property name="defaultEncoding" value="UTF-8"/>
+    <property name="host" value="smtp.gmail.com"/>
+    <property name="port" value="465"/>
+    <property name="username" value="${mail.username}"/>
+    <property name="password" value="${mail.password}"/>
+    <property name="javaMailProperties">
+        <value>
+            mail.debug=true
+            mail.smtp.auth=true
+            mail.smtp.socketFactory.class=java.net.SocketFactory
+            mail.smtp.socketFactory.fallback=false
+        </value>
+    </property>
+</bean>
+     
+     
+     
+     
+    
+</beans>
