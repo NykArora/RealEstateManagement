@@ -18,6 +18,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.json.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -40,6 +41,7 @@ public class UserController {
 	org.json.simple.JSONObject delhijsons = null;
 	
      @RequestMapping("login")
+     
 		public String login(@ModelAttribute User user,Model model,HttpServletRequest request)
 		{ 
 				
@@ -49,7 +51,7 @@ public class UserController {
 				return "login";
 		}
 		
-		
+		 else{
 			user= iUserService.userLogin(user);
 			 
 			 if(user==null)
@@ -71,12 +73,12 @@ public class UserController {
 			 if(user.getUserRole().getUserRoleId()==1)
 			 {
 				 
-				 delhijsons = iHpiService.getHPIJsonDelhi();
+			 /*delhijsons = iHpiService.getHPIJsonDelhi();
 
 				 //{"_09_2011":"124.8","_09_2013":"215.7","_09_2012":"183.2","_12_2011":"136.7","_03_2012":"158.2","_06_2013":"214.8","_03_2013":"213.1","_06_2011":"126.8","particulars":"Delhi","_06_2012":"177.3","_12_2012":"200.7"}
-				System.out.println("delhijsons cons"+delhijsons.toString());
+				System.out.println("delhijsons cons"+delhijsons.toString());*/
 				
-			//	model.addAttribute("hpidelhi",responsejson);
+			//model.addAttribute("hpidelhi",responsejson);
 				
 					return "redirect:dashboard";
 			 }
@@ -101,7 +103,7 @@ public class UserController {
 			 }
 				
 			 }
-	 
+		 }
 }
 	 
 	@RequestMapping(value="createuser")

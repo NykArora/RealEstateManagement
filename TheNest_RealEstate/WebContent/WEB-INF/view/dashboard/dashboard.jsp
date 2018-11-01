@@ -2,6 +2,7 @@
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <div class="">
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@page import="org.service.IHPIrestInt"%>
 <div class="right_col" role="main">
           <div class="">
  <div class="row">
@@ -9,7 +10,7 @@
                 <div class="x_panel">
                   <div class="x_title">
                     <h2 class="page_title">Client List<small></small></h2>
-                
+                   
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
@@ -67,12 +68,50 @@
 					</div>
                   </div>
                 </div>
-			</div>
+</div>
 
+
+
+ <button onclick="madeAjaxCall()" >show Graph</button>
+ 
              
             </div>
           </div>
         </div>
        </div>
+      
+       
+<script type="text/javascript">
+function madeAjaxCall(){
+$.ajax({
+type: "GET",
+url: "http://localhost:8080/TheNest_RealEstate/list",
+contentType:"application/json; charset=utf-8",
+dataType:"json",
+success: function(data){ 
+	alert(data);
+        if(data){
+            var len = data.length;
+            alert(len);
+            var txt = "";
+            if(len > 0){
+                for(var i=0;i<len;i++){
+                    if(data[i].bookId && data[i].bookName){
+                        txt += "<tr><td>"+data[i].bookId+"</td><td>"+data[i].bookName+"</td></tr>";
+                    }
+                }
+                if(txt != ""){
+                    $("#table1").append(txt).removeClass("hidden");
+                }
+            }
+        }
+    },
+    error: function(jqXHR, textStatus, errorThrown){
+        alert('error: ' + textStatus + ': ' + errorThrown);
+    }
+});
+return false;
+};
+</script>
 
      

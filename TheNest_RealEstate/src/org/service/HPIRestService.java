@@ -62,7 +62,7 @@ public class HPIRestService implements IHPIrestInt {
 				if(jsons.get("particulars").equals("Delhi")) {
 					
 					delhijsons = jsons;
-					System.out.println("delhi index "+jsons.toString());
+					System.out.println("delhijson"+delhijsons.toString());
 				}
 			}	
 			
