@@ -35,7 +35,7 @@
                       <li><a href="/dashboard">Dashboard</a></li>
                     </ul> -->
                   </li>
-                  <li><a><i class="fa fa-users"></i> Users <span class="fa fa-chevron-down"></span></a>
+                  <li><a href="userlist"><i class="fa fa-users"></i> Users <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="userlist">User List</a></li>
                       <li><a href="createuser">Create New User</a></li>
@@ -53,15 +53,21 @@
                     <li><a  href="patient_panding_for_consent"> Patients </a>
                   </li>
                    </c:if>
-                  <li><a><i class="fa fa-users"></i> Clients <span class="fa fa-chevron-down"></span></a> 
+                  <li><a href="Clientlist"><i class="fa fa-users"></i> Clients <span class="fa fa-chevron-down"></span></a> 
                   <ul class="nav child_menu">
                  <li><a  href="createclient">Add New Client </a></li>
                  </ul>
                   </li>
                   
-                  <li><a><i class="fa fa-users"></i>Property <span class="fa fa-chevron-down"></span></a> 
+                  <li><a href="addproperty"><i class="fa fa-users"></i>Property <span class="fa fa-chevron-down"></span></a> 
                   <ul class="nav child_menu">
                  <li><a  href="addproperty">Add New Property </a></li>
+                  </ul>
+                  </li>
+                  
+               <li><a href="interiordesign"><i class="fa fa-users"></i>Interior Design<span class="fa fa-chevron-down"></span></a> 
+                  <ul class="nav child_menu">
+                 <li><a href="interiordesign">Add New Interior Design</a></li>
                   </ul>
                   </li>
                 </ul>
