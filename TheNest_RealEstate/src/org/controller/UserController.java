@@ -112,11 +112,7 @@ public class UserController {
 		HttpSession session=req.getSession();
 		
 		User user=(User) session.getAttribute("user");
-		if(user==null)
-		{
-			return "redirect:logout";
-			
-		}
+		
 	   
 		List<UserRole> userRoles=iUserService.getUserRoles();
 		

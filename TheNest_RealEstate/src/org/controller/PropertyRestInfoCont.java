@@ -37,6 +37,8 @@ org.json.simple.JSONObject delhijsons = null;
 public  org.json.simple.JSONObject getHPIJsonDelhi() {
 		
 		delhijsons=iHpiService.getHPIJsonDelhi();
+		
+		System.out.println("delhijsons "+delhijsons);
 	          
 			return delhijsons;
 }

@@ -83,34 +83,42 @@
        
 <script type="text/javascript">
 function madeAjaxCall(){
-$.ajax({
-type: "GET",
-url: "http://localhost:8080/TheNest_RealEstate/list",
-contentType:"application/json; charset=utf-8",
-dataType:"json",
-success: function(data){ 
-	alert(data);
-        if(data){
-            var len = data.length;
-            alert(len);
-            var txt = "";
-            if(len > 0){
-                for(var i=0;i<len;i++){
-                    if(data[i].bookId && data[i].bookName){
-                        txt += "<tr><td>"+data[i].bookId+"</td><td>"+data[i].bookName+"</td></tr>";
-                    }
-                }
-                if(txt != ""){
-                    $("#table1").append(txt).removeClass("hidden");
-                }
-            }
-        }
-    },
-    error: function(jqXHR, textStatus, errorThrown){
-        alert('error: ' + textStatus + ': ' + errorThrown);
-    }
-});
-return false;
+alert('made call');
+	
+	//var vy=$("#states").val();
+	
+	//alert("abc"+vy);
+	 	 
+		$.ajax({
+	 	 	type : "POST",
+	 	 	contentType : "application/text",
+	 	 	url : "/list",
+	 	 	dataType : 'text',
+	 	 	timeout : 100000,
+	 	 	success : function(data) {
+	 	 		
+	 	 		console.log("SUCCESS: ", data);
+	 	 		alert('data OSA'+data);
+	 	 		display2(data);
+	 	 	},
+	 	 	error : function(e) {
+	 	 		console.log("ERROR: ", e);
+	 	 		alert('ERROR');
+	 	 		//display(e);
+	 	 	},
+	 	 	done : function(e) 
+	 	 	{
+	 	 		console.log("DONE");
+	 	 	}
+	 	 });
+	 	 
+
+	 function display2(data) 
+	 {
+	 	   
+	 	alert('data'+data);
+
+	 }
 };
 </script>
 
