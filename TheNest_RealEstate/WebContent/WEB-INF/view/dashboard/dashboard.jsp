@@ -96,14 +96,15 @@ google.charts.load('current', {packages: ['corechart','line']});
 function madeAjaxCall(){
 $.ajax({
 type: "GET",
-url: "http://localhost:8080/TheNest_RealEstate/list",
+url: "http://localhost:8082/TheNest_RealEstate/list",
 contentType:"application/json; charset=utf-8",
 dataType:"json",
 success: function(data){ 
-	alert(data);
+	//alert(data);
 	var ds = data;
-	 var keyvaluearray ="";
+//	 var keyvaluearray ="";
 	  var arr = new Array();
+	  var arrs = new Array();
         if(ds!=null){
         	var myObj =ds;
         	
@@ -111,19 +112,21 @@ success: function(data){
         	  
         		alert("key--"+x+"--myObj--value--"+myObj[x]);
         	   
-        	    keyvaluearray = "['"+x+"',"+value+"]";
+        		var  keyvaluearray = "['"+x+"',"+myObj[x]+"]";
         	    
+        		  keyvaluearray =  keyvaluearray.split();
+        	 
         	    alert('keyvaluearray '+keyvaluearray);
         	    
-        	    keyvaluearray +=keyvaluearray;
+        	   // keyvaluearray +=keyvaluearray;
         	    
-        	     var newarr = arr.push(keyvaluearray);
-        	     
-        	     alert('keyvaluearray '+keyvaluearray);
-        	}
+        	    arr.push(keyvaluearray);
         	
+        	}
+        	alert('arr'+arr.length);
+ 
+          drawChart(arr);
          
-          
         }
     },
     error: function(jqXHR, textStatus, errorThrown){
@@ -134,31 +137,15 @@ return false;
 };
 
 
-function drawChart(x,value) {
+function drawChart(arr) {
     // Define the chart to be drawn. 
-    alert("key--1"+x+"--myObj--value--2"+value); 
+   alert("arr--1"+arr); 
     
+   //var arr1 = new Array(arr);
    
-   
-      
+ //  alert("arr1--1"+arr1); 
      //arr +=arr; 
-     
-     newarr += newarr+",";
-     
-     alert('newarr '+newarr[0]);
-     alert('newarr '+newarr[1]);
-     alert('newarr '+newarr[2]);
-     
-     
-     alert("newarray"+newarr);
-    
-    var data = new google.visualization.DataTable();
-    data.addColumn('string', 'Month');
-    data.addColumn('number', 'High');
-    data.addColumn('number', 'Low');
-    data.addColumn('number', 'Medium');
-    data.addColumn('number', 'Average');
-    data.addRows([
+   /*[
         ['Jan',  7.0, 0.2, 0.9, 3.9 ],
         ['Feb',  6.9, 0.8, 0.6, 4.2],
         ['Mar',  9.5,  5.7, 3.5, 5.7],
@@ -172,7 +159,25 @@ function drawChart(x,value) {
         ['Oct',  18.3, 14.1, 9.0, 10.3],
         ['Nov',  13.9,  8.6, 3.9, 6.6],
         ['Dec',  9.6,  2.5,  1.0, 4.8]
-     ]);
+     ]
+   */
+   
+   
+   
+  console.log('arr.length--'+arr.length);
+    
+    var data = new google.visualization.DataTable();
+   
+    data.addColumn('string', 'Month');
+    data.addColumn('number', 'High');
+
+    for(var i = 0;i<=arr.length-1;i++){
+    	
+    	var nwarr = arr.split(',');
+    	
+    	data.addRow(nwarr[i]);	
+    }
+    
     
     // Set chart options
     var options = {'title' : 'Highest Property Index/Ratio',

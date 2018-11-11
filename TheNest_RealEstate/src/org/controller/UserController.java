@@ -113,11 +113,11 @@ public class UserController {
 		
 		User user=(User) session.getAttribute("user");
 		
-		if(user==null)
+		/*if(user==null)
 		{
 			return "redirect:logout";
 			
-		}
+		}*/
 	   
 		List<UserRole> userRoles=iUserService.getUserRoles();
 		
